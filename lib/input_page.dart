@@ -1,4 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'reusable_card.dart';
+import 'icon_content.dart';
+
+const bottomContainerHeight = 80.0;
+const activeCardColor = Color(0xFF1D1E33);
+const bottomContainerColor = Color(0xFFEB1555);
+const inactiveCardColor = Color(0xFF111328);
+
+enum Gender {
+  male,
+  female,
+}
 
 class InputPage extends StatefulWidget {
   @override
@@ -6,6 +19,8 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
+  Gender selectedGender = Gender.male;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,59 +35,59 @@ class _InputPageState extends State<InputPage> {
               child: Row(
                 children: [
                   Expanded(
-                    child: Container(
-                      margin: EdgeInsets.all(15.0),
-                      decoration: BoxDecoration(
-                        color: Color(0xFF1D1E33),
-                        borderRadius: BorderRadius.circular(10.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          selectedGender = Gender.male;
+                        });
+                      },
+                      child: ReusableCard(
+                        selectedGender == Gender.male
+                            ? activeCardColor
+                            : inactiveCardColor,
+                        IconContent(FontAwesomeIcons.mars, "MALE 男生"),
                       ),
                     ),
                   ),
                   Expanded(
-                    child: Container(
-                      margin: EdgeInsets.all(15.0),
-                      decoration: BoxDecoration(
-                        color: Color(0xFF1D1E33),
-                        borderRadius: BorderRadius.circular(10.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          selectedGender = Gender.female;
+                        });
+                      },
+                      child: ReusableCard(
+                        selectedGender == Gender.female
+                            ? activeCardColor
+                            : inactiveCardColor,
+                        IconContent(FontAwesomeIcons.venus, "FEMALE 女生"),
                       ),
                     ),
                   ),
                 ],
               ),
             ),
-            Expanded(
-              child: Container(
-                margin: EdgeInsets.all(15.0),
-                decoration: BoxDecoration(
-                  color: Color(0xFF1D1E33),
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-              ),
+            /*Expanded(
+              child: ReusableCard(activeCardColor),
             ),
             Expanded(
               child: Row(
                 children: [
                   Expanded(
-                    child: Container(
-                      margin: EdgeInsets.all(15.0),
-                      decoration: BoxDecoration(
-                        color: Color(0xFF1D1E33),
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                    ),
+                    child: ReusableCard(activeCardColor),
                   ),
                   Expanded(
-                    child: Container(
-                      margin: EdgeInsets.all(15.0),
-                      decoration: BoxDecoration(
-                        color: Color(0xFF1D1E33),
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                    ),
+                    child: ReusableCard(activeCardColor),
                   ),
                 ],
               ),
-            ),
+            ),*/
+            Container(
+              color: bottomContainerColor,
+              margin: EdgeInsets.only(top: 10.0),
+              width: double.infinity,
+              height: bottomContainerHeight,
+            )
           ],
         ));
   }
