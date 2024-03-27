@@ -1,3 +1,6 @@
 # bmi_calc
 
-This is an app that is a BMI calculator. It has two pages. First page consist of whether a user choose male/female.
+This is a BMI calculator app that calculates the BMI of a person based on gender, height and weight. The first page looks like this:
+![Alt text](bmi_calc/readme_images/Screen1.png?raw=true "BMI input page")
+
+![Alt text](bmi_calc/readme_images/Screen2.png?raw=true "BMI input page")
